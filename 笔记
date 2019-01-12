@@ -1,0 +1,71 @@
+1：脚手架工具  vue-cli  2/3
+  2.0  --> npm i vue-cli -g   /    yarn
+
+  3.0  --> npm i vue-cli@next  /  npm i -g @vue/cli  yarn
+
+
+创建项目
+2.0 vue init webpack(这个)/webpack-simple  项目名称
+3.0 vue create  项目名称
+
+webpack
+热启动配置  devServer {port:8080,hot: true }
+启动项目
+npm run dev == npm start    yarn serve
+
+//打包  --》内存
+//开辟了一个服务端口 8081  8082
+
+路由
+window.addEventlisters = hashChange   哈希
+window.addEventlisters = popState  /history
+
+
+let router = new VueRouter({
+    mode: 'hash'
+    routes:   //路由映射表 {path name  component children： [{}]}
+})
+
+路由拦截（守卫）
+局部守卫
+beforeRouterEnter---》正准备进入的时候
+beforeRouterUpdate---》路由更新
+beforeRouterLeave---》正离开的时候
+
+
+全局守卫 遍历你所有的路由
+router.beforeEach((to,from,next)=>{
+
+    isLogin 1        next
+            to-login next
+            0/null   login
+    let path = from.name || 'Home'
+   if(sessionStorage.getItem('isLogin') || to.name/to.fullpath === 'login'){
+        next()
+        return;
+   }else{
+
+       router.replace({path: '/login',query: {path: path}})
+   }
+
+})
+
+
+Login组件
+let  path = this.$route.query.path  || "/home";
+this.$router.push({path: path})
+
+
+ajax  -->promise  $.ajax({}).then(success).catch(error)
+axios  发送ajax请求
+
+本地服务
+http://localhost:8081/anhao/ajax/movieOnInfoList?token=
+target /ajax/movieOnInfoList?token=
+
+
+
+
+
+
+
